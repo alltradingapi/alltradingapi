@@ -116,16 +116,12 @@ can grow without being rebuilt.
 
 <div align="center">
 
-<sub>
-
-**All Trading API** is an independent service. It is not affiliated with,
+*All Trading API is an independent service. It is not affiliated with,
 endorsed by or sponsored by any broker, and it is not a financial advisor.
 All market data is provided as-is for research and tooling purposes, without
-warranty of accuracy or fitness for trading.<br/>
-Nothing here constitutes financial advice. Trading involves substantial risk of loss.
+warranty of accuracy or fitness for trading. Nothing here constitutes
+financial advice. Trading involves substantial risk of loss.*
 
-</sub>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:22D3EE,50:7367F0,100:8B5CF6&height=150&section=footer&animation=twinkling" width="100%" alt="" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:22D3EE,50:7367F0,100:8B5CF6&height=120&section=footer&animation=twinkling" width="100%" alt="" />
 
 </div>
