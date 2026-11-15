@@ -1,142 +1,193 @@
 <div align="center">
 
-# All Trading API
-
-**Market-data infrastructure for Quotex — candles, live prices, history, signals and analyzers over plain HTTP.**
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7367F0,55:A78BFA,100:2F3349&height=210&section=header&text=All%20Trading%20API&fontSize=68&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Market%20data%20infrastructure%20for%20modern%20trading%20tools&descAlignY=59&descSize=17" width="100%" alt="All Trading API" />
 
 <a href="https://alltradingapi.com">
-  <img src="https://img.shields.io/badge/website-alltradingapi.com-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website">
+  <img src="https://alltradingapi.com/assets/images/favicon.svg" width="104" alt="All Trading API logo" />
 </a>
-<img src="https://img.shields.io/badge/endpoints-14-3fb950?style=for-the-badge" alt="14 endpoints">
-<img src="https://img.shields.io/badge/free_tier-yes-3fb950?style=for-the-badge" alt="Free tier">
-<img src="https://img.shields.io/badge/auth-API_key-d29922?style=for-the-badge" alt="API key auth">
-<img src="https://img.shields.io/badge/access-read--only-8b949e?style=for-the-badge" alt="Read-only">
+
+<br/>
+
+<a href="https://alltradingapi.com">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=23&pause=900&color=7367F0&center=true&vCenter=true&width=640&lines=Market+data%2C+without+the+friction;Live+Prices+%7C+Candles+%7C+History;Signals+%7C+Screenshots+%7C+Analyzers;Built+for+developers+who+ship" alt="What we do" />
+</a>
+
+<br/>
+
+<a href="https://alltradingapi.com">
+  <img src="https://img.shields.io/badge/Website-alltradingapi.com-7367F0?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website" />
+</a>
+<a href="https://x.com/alltradingapi">
+  <img src="https://img.shields.io/badge/X-@alltradingapi-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" />
+</a>
+<a href="https://www.reddit.com/user/alltradingapi/">
+  <img src="https://img.shields.io/badge/Reddit-u%2Falltradingapi-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Reddit" />
+</a>
+
+<br/><br/>
+
+<img src="https://komarev.com/ghpvc/?username=alltradingapi&label=Visitors&color=7367F0&style=for-the-badge" alt="Visitors" />
 
 </div>
 
 ---
 
-## Why this exists
+## 🚀 Who we are
 
-Quotex publishes no official public API and issues no developer keys. Getting clean, programmatic access to its market data means reverse-engineering a browser session, babysitting sockets and rebuilding the same candle parser on every project.
+We build the quiet plumbing behind good trading tools — the part that turns
+messy market feeds into data you can actually reason about.
 
-All Trading API does that once, and serves the result as ordinary JSON over HTTPS.
+No scraping to maintain. No sessions to babysit. No midnight breakage when a
+broker changes a shape. Just clean, steady market data, delivered to whatever
+you're building.
 
-- **One endpoint, one product.** Pick only the data you need — candles, signals, screenshots, analyzers.
-- **Plain HTTP + JSON.** Works from Python, PHP, Node, Go, a spreadsheet, or `curl`. No SDK lock-in.
-- **Read-only by design.** The desk serves market data. It never connects to a broker account, places orders or holds positions.
-- **Private keys, gated access.** Each product issues its own key after approval, passed as `?key=ap_your_key`.
-- **Free tier included.** `/qx_timeframes` costs nothing, so you can wire up the auth flow before paying for anything.
-
----
-
-## Live endpoints
-
-Base URL — `https://alltradingapi.com`
-
-| Product | Endpoint | Price |
-| :--- | :--- | ---: |
-| Quotex Timeframes | `/qx_timeframes` | **Free** |
-| Quotex Candles | `/qx_candles` | $15/mo |
-| Quotex Candle History | `/qx_history` | $15/mo |
-| Quotex Saved Candles | `/qx_saved` | $20/mo |
-| Quotex Assets | `/qx_assets` | $10/mo |
-| Quotex Asset Check | `/qx_check` | $3/mo |
-| Quotex Signals | `/qx_signal` | $30/mo |
-| Quotex Future Signals | `/qx_future` | $30/mo |
-| Quotex Results | `/qx_result` | $15/mo |
-| Quotex Screenshots | `/qx_ss_pro_v2` | $10/mo |
-| Quotex Analyzer | `/qx_analyzer` | $30/mo |
-| Quotex Analyzer v4 | `/qx_analyzer_v4` | $30/mo |
-| Quotex Analyzer v5 | `/qx_analyzer_v5` | $30/mo |
-| Quotex Market Trend | `/qx_market_trend` | $30/mo |
+> **Clean data in. Confident decisions out.**
 
 ---
 
-## Quick start
+## 🧩 What we deliver
 
-**1. Get a key.** Choose a product on the desk and wait for approval — your key arrives in the dashboard.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-**2. Call it.** Two candles of `1m` history, no SDK required:
+**🕯️ Candles &amp; price action**
+Structured candles across multiple timeframes, ready to chart.
 
-```bash
-curl "https://alltradingapi.com/qx_candles?asset=EURUSD_otc&hours=2&timeframe=1m&timezone=-3&key=YOUR_API_KEY"
-```
+**💹 Live prices**
+Current market pricing that keeps your UI honest.
 
-**3. Read JSON.** Example from `/qx_market_trend`:
+**📜 Historical data**
+Reach back through time to backtest properly.
 
-```json
-{
-  "success": true,
-  "engine_version": "v6.0-unified-snr-safety",
-  "asset_info": {
-    "asset": "USDMXN_otc",
-    "market_type": "otc",
-    "payout": 91,
-    "is_open": true,
-    "current_price": 19.9165,
-    "timeframes": ["1m", "5m", "15m"],
-    "candles_analyzed": 300
-  },
-  "executive_summary": {
-    "market_tradeability_score": 53.5,
-    "can_trade_market": false
-  }
-}
-```
+**💱 Asset coverage**
+Tradable instruments with payout context, so you know what's worth trading.
 
-Every response carries `success`, so a single check covers error handling:
+</td>
+<td width="50%" valign="top">
 
-```bash
-curl -s "...&key=$KEY" | jq '.success, .asset_info.payout'
-```
+**🔔 Signals**
+Structured setups instead of squinting at charts.
 
----
+**📸 Chart snapshots**
+Visual market context, generated for you.
 
-## Built for load
+**🧠 Market analyzers**
+Layered analysis that scores conditions instead of guessing.
 
-```
-client ──HTTPS──> alltradingapi.com (API layer, key gating)
-                        │
-                        ├── HTTP/JSON market-data feed
-                        └── stream centre (SSE + WebSocket)
-```
+**⏱️ Timeframe flexibility**
+From micro moves to longer horizons.
 
-<sub>
-
-`PHP` · `Python` · `Nginx` · `WebSocket` · `SSE` · `JSON`
-
-</sub>
+</td>
+</tr>
+</table>
 
 ---
 
-## Roadmap
+## 💎 Why developers choose us
 
-Quotex is live. The same product set is specified for four more brokers — catalogued, not yet connected:
+<table>
+<tr>
+<td width="33%" align="center" valign="top">
 
-| Broker | Quotes | Assets | Realtime | Screenshots |
-| :--- | :--- | :--- | :--- | :--- |
-| Binolla | Planned | Planned | Planned | Planned |
-| Pocket Option | Planned | Planned | Planned | Planned |
-| IQ Option | Planned | Planned | Planned | Planned |
-| Deriv | Planned | Planned | Planned | Planned |
+### 🔑
+
+**Private access**
+
+Your own credentials. Not a shared scraped feed everyone is hammering at once.
+
+</td>
+<td width="33%" align="center" valign="top">
+
+### 🪶
+
+**Lightweight by design**
+
+Plain, predictable data. Nothing bloated to parse, nothing to unwrap.
+
+</td>
+<td width="33%" align="center" valign="top">
+
+### 🛡️
+
+**Read-only, always**
+
+We serve information. We never touch accounts, orders or positions.
+
+</td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top">
+
+### ⚡
+
+**Fast to integrate**
+
+If you can make an HTTP request, you can ship with us today.
+
+</td>
+<td width="33%" align="center" valign="top">
+
+### 🧪
+
+**Stable shapes**
+
+Responses stay consistent, so your code stops breaking on Tuesdays.
+
+</td>
+<td width="33%" align="center" valign="top">
+
+### 📚
+
+**Documented properly**
+
+Every product explained on the site — no archaeology required.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🌍 Live today &amp; next
+
+🟣 **Live:** Quotex market data — candles, pricing, history, signals, snapshots and analyzers.
+
+🧭 **In the works:** the same experience extended to more brokers, so your tooling
+can grow without being rebuilt.
+
+---
+
+## 🤝 Let's build something
+
+<div align="center">
+
+<a href="https://alltradingapi.com">
+  <img src="https://img.shields.io/badge/Explore_alltradingapi.com-7367F0?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Explore alltradingapi.com" />
+</a>
+
+<br/><br/>
+
+📬 Questions, ideas or feedback? Find us on
+<a href="https://x.com/alltradingapi">**X**</a> or
+<a href="https://www.reddit.com/user/alltradingapi/">**Reddit**</a> — we read everything.
+
+</div>
 
 ---
 
 <div align="center">
 
-### Start with the free endpoint
-
-<a href="https://alltradingapi.com">
-  <img src="https://img.shields.io/badge/Open_alltradingapi.com-1f6feb?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Open alltradingapi.com">
-</a>
-
-</div>
-
----
-
 <sub>
 
-**Disclaimer.** All Trading API is an independent service. It is not affiliated with, endorsed by or sponsored by Quotex, Binolla, Pocket Option, IQ Option or Deriv, and it is not a financial advisor. All market data is provided as-is for research and tooling purposes, without warranty of accuracy or fitness for trading. Nothing here constitutes financial advice. Trading involves substantial risk of loss.
+**All Trading API** is an independent service. It is not affiliated with,
+endorsed by or sponsored by any broker, and it is not a financial advisor.
+All market data is provided as-is for research and tooling purposes, without
+warranty of accuracy or fitness for trading. Nothing here constitutes
+financial advice. Trading involves substantial risk of loss.
 
 </sub>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2F3349,55:A78BFA,100:7367F0&height=140&section=footer&animation=twinkling" width="100%" alt="" />
+
+</div>
